@@ -1,6 +1,6 @@
 class StudentsInMLOps:
     def __init__(self):
-        self.total_strength = 7
+        self.total_strength = 0
         self.class_name = "MLOps"
 
     def enrollStudents(self, num_students):
