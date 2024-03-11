@@ -26,18 +26,18 @@ pipeline {
             }
         }
 
-       stage('Deploying') {
+     stage('Deploying') {
     steps {
         script {
-            def branchName = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+            def branchName = bat(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
             
             if (branchName == 'main') {
                 echo 'Deploying to production'
                 // Deployment commands for production environment
-                sh '''
+                bat '''
                     echo "Deployment to production started"
                     git pull origin main  # Ensure the latest changes from main branch are pulled
-                    # Add any necessary deployment commands here
+                    REM Add any necessary deployment commands here
                     git add .
                     git commit -m "Deployment to production"
                     git push origin main  # Push changes to the main branch
@@ -45,14 +45,15 @@ pipeline {
             } else {
                 echo 'Deploying to UAT'
                 // Deployment commands for UAT environment
-                sh '''
+                bat '''
                     echo "Deployment to UAT started"
-                    # Add your deployment commands here
+                    REM Add your deployment commands here
                 '''
             }
         }
     }
 }
+
 
     }
 }
